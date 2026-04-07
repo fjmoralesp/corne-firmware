@@ -120,11 +120,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [1] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-    KC_GRAVE,    KC_7,    KC_8,    KC_9,   KC_NO,   KC_NO,                        KC_NO,   KC_NO,   KC_NO, KC_MPLY, KC_VOLD, KC_VOLU,
+    KC_GRAVE,     KC_1,    KC_2,    KC_3,   KC_4,     KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,   KC_NO,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-    KC_0,    KC_4,    KC_5,    KC_6, LSFT(KC_9), LSFT(KC_0),                        KC_H,    KC_J,    KC_K,    KC_L,   KC_NO,   KC_NO,
+    KC_NO,    KC_NO,  KC_NO,  KC_NO, LSFT(KC_9), LSFT(KC_0),                        KC_H,    KC_J,    KC_K,    KC_L,   KC_NO,   KC_NO,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-    KC_NO, KC_1, KC_2, KC_3, LSFT(KC_LBRC), LSFT(KC_RBRC),                       KC_UP, KC_DOWN, KC_LEFT, KC_RIGHT,   KC_NO,   KC_NO,
+    KC_NO, KC_NO, KC_NO, KC_NO, LSFT(KC_LBRC), LSFT(KC_RBRC),                      KC_UP, KC_DOWN, KC_LEFT, KC_RIGHT,   KC_NO,   KC_NO,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LBRC, KC_RBRC,   KC_NO,      KC_NO,   KC_NO,   KC_NO
                                       //`--------------------------'  `--------------------------'
