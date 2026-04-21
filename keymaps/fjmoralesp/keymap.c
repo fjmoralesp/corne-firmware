@@ -95,7 +95,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     tap_dance_state_t *state;
 
     switch (keycode) {
-        case TD(TD_A_LCTL) ... TD(TD_O_RCTL):
+        case TD(TD_A_LCTL) ... TD(TD_ENTER_MO1):
             state = tap_dance_get_state(QK_TAP_DANCE_GET_INDEX(keycode));
             if (!record->event.pressed && state != NULL && state->count && !state->finished) {
                 tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)tap_dance_actions[QK_TAP_DANCE_GET_INDEX(keycode)].user_data;
