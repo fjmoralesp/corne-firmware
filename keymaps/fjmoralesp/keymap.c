@@ -19,14 +19,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 
 enum tap_dance_keycodes {
-    TD_A_LCTL,
-    TD_R_LSFT,
-    TD_S_LGUI,
-    TD_T_MO1,
-    TD_N_MO1,
-    TD_E_RGUI,
-    TD_I_RSFT,
-    TD_O_RCTL,
+  TD_A_LCTL,
+  TD_R_LSFT,
+  TD_S_LGUI,
+  TD_T_LALT,
+  TD_N_RALT,
+  TD_E_RGUI,
+  TD_I_RSFT,
+  TD_O_RCTL,
+  TD_ENTER_MO1,
 };
 
 typedef struct {
@@ -79,14 +80,15 @@ void tap_dance_tap_hold_reset(tap_dance_state_t *state, void *user_data) {
     }
 
 tap_dance_action_t tap_dance_actions[] = {
-    [TD_A_LCTL] = ACTION_TAP_DANCE_TAP_HOLD(KC_A,    KC_LCTL, false),
-    [TD_R_LSFT] = ACTION_TAP_DANCE_TAP_HOLD(KC_R,    KC_LSFT, false),
-    [TD_S_LGUI] = ACTION_TAP_DANCE_TAP_HOLD(KC_S,    KC_LGUI, false),
-    [TD_T_MO1]  = ACTION_TAP_DANCE_TAP_HOLD(KC_T,    1,       true),
-    [TD_N_MO1]  = ACTION_TAP_DANCE_TAP_HOLD(KC_N,    1,       true),
-    [TD_E_RGUI] = ACTION_TAP_DANCE_TAP_HOLD(KC_E,    KC_RGUI, false),
-    [TD_I_RSFT] = ACTION_TAP_DANCE_TAP_HOLD(KC_I,    KC_RSFT, false),
-    [TD_O_RCTL] = ACTION_TAP_DANCE_TAP_HOLD(KC_O,    KC_RCTL, false),
+  [TD_A_LCTL] = ACTION_TAP_DANCE_TAP_HOLD(KC_A, KC_LCTL, false),
+  [TD_R_LSFT] = ACTION_TAP_DANCE_TAP_HOLD(KC_R, KC_LSFT, false),
+  [TD_S_LGUI] = ACTION_TAP_DANCE_TAP_HOLD(KC_S, KC_LGUI, false),
+  [TD_T_LALT] = ACTION_TAP_DANCE_TAP_HOLD(KC_T, KC_LALT, false),
+  [TD_N_RALT] = ACTION_TAP_DANCE_TAP_HOLD(KC_N, KC_RALT, false),
+  [TD_E_RGUI] = ACTION_TAP_DANCE_TAP_HOLD(KC_E, KC_RGUI, false),
+  [TD_I_RSFT] = ACTION_TAP_DANCE_TAP_HOLD(KC_I, KC_RSFT, false),
+  [TD_O_RCTL] = ACTION_TAP_DANCE_TAP_HOLD(KC_O, KC_RCTL, false),
+  [TD_ENTER_MO1] = ACTION_TAP_DANCE_TAP_HOLD(KC_ENTER, 1, true),
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -107,13 +109,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-    KC_ESCAPE,    KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                     KC_J,    KC_L,    KC_U,    KC_Y, KC_SCLN, KC_BSLS,
+    KC_ESCAPE,    KC_Q,    KC_W,    KC_F,    KC_P,   KC_B,                          KC_J,    KC_L,    KC_U,    KC_Y, KC_SCLN, KC_BSLS,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-    KC_MINUS, TD(TD_A_LCTL), TD(TD_R_LSFT), TD(TD_S_LGUI), TD(TD_T_MO1), KC_D, KC_H, TD(TD_N_MO1), TD(TD_E_RGUI), TD(TD_I_RSFT), TD(TD_O_RCTL), KC_QUOTE,
+    KC_MINUS, TD(TD_A_LCTL), TD(TD_R_LSFT), TD(TD_S_LGUI), TD(TD_T_LALT), KC_G,     KC_M, TD(TD_N_RALT), TD(TD_E_RGUI), TD(TD_I_RSFT), TD(TD_O_RCTL), KC_QUOTE,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-    KC_EQUAL,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                     KC_K,    KC_M,    KC_COMMA, KC_DOT, KC_SLASH,   MO(3),
+    KC_EQUAL,     KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                         KC_K,    KC_H, KC_COMMA, KC_DOT, KC_SLASH,   MO(3),
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LALT,  KC_TAB,KC_SPACE,   KC_ENTER, KC_BSPC, KC_RALT
+                                          KC_NO,  KC_TAB,KC_SPACE,   TD(TD_ENTER_MO1), KC_BSPC, KC_NO
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -124,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
     KC_NO,    KC_NO,  KC_NO,  KC_NO, LSFT(KC_9), LSFT(KC_0),                        KC_H,    KC_J,    KC_K,    KC_L,   KC_NO,   KC_NO,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-    KC_NO, KC_NO, KC_NO, KC_NO, LSFT(KC_LBRC), LSFT(KC_RBRC),                      KC_UP, KC_DOWN, KC_LEFT, KC_RIGHT,   KC_NO,   KC_NO,
+    KC_NO, KC_NO, KC_NO, KC_NO, LSFT(KC_LBRC), LSFT(KC_RBRC),                    KC_LEFT, KC_DOWN,   KC_UP, KC_RIGHT,  KC_NO,   KC_NO,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LBRC, KC_RBRC,   KC_NO,      KC_NO,   KC_NO,   KC_NO
                                       //`--------------------------'  `--------------------------'
